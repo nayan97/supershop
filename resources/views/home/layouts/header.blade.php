@@ -1,9 +1,11 @@
     
     
        <!-- Page Preloder -->
-       <div id="preloder">
-        <div class="loader"></div>
-    </div>
+        {{-- <div id="preloder">
+            <div class="loader">
+
+            </div>
+        </div> --}}
 
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
@@ -31,10 +33,11 @@
             <div class="header__top__right__auth">
                 <a href="#"><i class="fa fa-user"></i> Login</a>
             </div>
+
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
+                <li class="active"><a href="{{ route('home.page')}}">Home</a></li>
                 <li><a href="./shop-grid.html">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
@@ -94,9 +97,64 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
-                            </div>
+                            @if (Route::has('login'))
+                                @auth
+                                    @if (Auth::user()->utype ===0))
+                                        <div class="header__top__right__auth">
+                                            <a href="{{ route('admin.index') }}"><i class="fa fa-user"></i> Dashboard</a>
+                                        </div>
+                                    @else
+                                    <div class="header__top__right__language">
+                                        <i class="fa fa-user"></i>
+                                        <div>Profile</div>
+                                        <span class="arrow_carrot-down"></span>
+                                        <ul>
+                                            <li>
+                                                 <a href="{{ route('user.index') }}">My Account</a>
+                                            </li>
+                                            <li>
+                                                <a class="" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                        {{-- <div class="header__top__right__auth">
+                                            <a href="{{ route('user.index') }}"><i class="fa fa-user"></i>My Account</a>
+                                        </div> --}}
+
+                                    @endif
+                                    {{-- <div class="header__top__right__auth">
+                                       
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                    </div> --}}
+                                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form> --}}
+                                @else
+                                    <div class="header__top__right__auth">
+                                        <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+                                    </div>
+                                
+                                    <div class="header__top__right__auth">
+
+                                        <a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
+                                    </div>
+                                @endauth
+
+                                
+                         
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -112,7 +170,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="{{route('home.page')}}">Home</a></li>
                             <li><a href="./shop-grid.html">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
