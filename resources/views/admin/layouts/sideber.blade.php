@@ -32,12 +32,7 @@
 									<li><a href="lock-screen.html"> Lock Screen </a></li>
 								</ul>
 							</li>
-							<li> 
-								<a href="{{ route('theme.index')}}"><i class="fe fe-vector"></i> <span>Settings</span></a>
-							</li>
-							<li> 
-								<a href="{{ route('admin.logout')}}"><i class="fe fe-star-o"></i> <span>Logout</span></a>
-							</li>
+					
 						
 							
 						
