@@ -6,7 +6,7 @@
 						<div class="col-md-7">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">All Category</h4>
+									<h4 class="card-title">All Brands</h4>
 								</div>
 								<div class="card-body">
                                     
@@ -26,7 +26,7 @@
                                         <tbody>
                                       
 
-                                        @forelse ($cats as $item)
+                                        @forelse ($brands as $item)
                                         <tr>
                                             <td>{{$loop ->index + 1}}</td>
                                             
@@ -60,14 +60,14 @@
                             @if( $type === 'add')
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Add new Category</h4>
+									<h4 class="card-title">Add new Brand</h4>
 								</div>
 								<div class="card-body">
 
 
                                 @include('validate.success')
                                 @include('validate.error')
-									<form action="{{route ('category.store')}}" method="POST">
+									<form action="{{route ('brand.store')}}" method="POST">
                                         @csrf
 										<div class="form-group">
 											<label>Category Name</label>
