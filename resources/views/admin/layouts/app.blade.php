@@ -89,8 +89,11 @@
 		
 		<!-- Custom JS -->
 		<script  src="{{ asset('admin/assets/js/script.js')}}"></script>
+		<script  src="{{ asset ('admin/assets/ckeditor/ckeditor.js')}}"></script>
 
 		<script>
+			CKEDITOR.replace('text_editor');
+			CKEDITOR.replace('dersc_editor');
 			$(document).ready(function() {
 				$('.comet-select-2').select2();
 			});

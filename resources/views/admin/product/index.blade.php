@@ -34,9 +34,9 @@
                                             <td>{{$loop ->index + 1}}</td>
                                             <td>{{$item -> name}}</td>
                                             <td>{{$item -> description}}</td>
-                                            <td>{{$item -> price}}</td>
+                                            <td>{{$item -> sale_price}}</td>
                                             <td>
-                                                <img style="width:45px;height:45px;object-fit:cover;" src="{{ ('img/product/' . $item -> photo ) }}" alt="">
+                                                <img style="width:45px;height:45px;object-fit:cover;" src="{{ url($item -> img ) }}" alt="">
                                             </td>
                                             <td>{{$item -> created_at -> diffForHumans()}}</td>
                                             <td>

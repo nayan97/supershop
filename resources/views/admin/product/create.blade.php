@@ -3,8 +3,13 @@
 @section('main-section')
 
                 <div class="row">
+                    <div class="col-md-1">
+                 
+                 
+              
+                </div>
 					
-						<div class="col-md-12">
+						<div class="col-md-10">
                                 @if ($form == 'create')
                                     <div class="card">
                                         <div class="card-header">
@@ -25,15 +30,16 @@
                                                 @csrf
                                                 <div class="form-group">
                                                     <label>Tittle</label>
-                                                    <input name="title" type="text" class="form-control">
+                                                    <input name="name" type="text" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Short Desccription</label>
-                                                    <input name="short_description" type="text" class="form-control">
+                                                    <textarea name="short_description" id="text_editor" cols="30" rows="10"></textarea>
+                                                   
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Desccription</label>
-                                                    <input name="description" type="text" class="form-control">
+                                                    <textarea name="description" id="dersc_editor" cols="30" rows="6"></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Regular Price</label>
@@ -45,23 +51,35 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Status</label>
-                                                    <input name="sale_price" type="number" class="form-control">
+                                                    <input name="#" type="number" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Quantity</label>
-                                                    <input name="sale_price" type="number" class="form-control">
+                                                    <input name="quantity" type="number" class="form-control">
                                                 </div>
                                              
                                                 <div class="form-group">
                                                     <label>Catergory</label>
-                                                    <select name="cat" id="">
+                                                    <select name="category_id" id="">
                                                  
                                                         <option value="">Select Category</option>
-                                                        <option value="electronic">Electronic</option>
-                                                        <option value="mobile">Mobile</option>
-                                                        <option value="computer">Computer</option> 
-                                                        <option value="tv">TV</option>  
-                                                        
+                                                        @foreach ($categories as $cat )
+                                                            
+                                                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                                        @endforeach
+                                                    
+                                                    </select>
+                        
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Catergory</label>
+                                                    <select name="brand_id" id="">
+                                                 <br><br>
+                                                        <option value="">Select Brand</option>
+                                                        @foreach ($brands as $brand)
+                                                            
+                                                        <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                                        @endforeach
                                                     
                                                     </select>
                         
