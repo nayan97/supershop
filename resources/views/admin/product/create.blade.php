@@ -108,7 +108,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h4 class="card-title">Edit Product</h4><span style="padding:0px">
-                                            <a class="btn btn-primary float-right" href="{{ url('product')}}">Back</a></span>
+                                            <a class="btn btn-primary float-right" href="{{ url('products')}}">Back</a></span>
                                         </div>
                                         <div class="card-body">
 
@@ -121,47 +121,69 @@
 
                                         @endif
 
-                                            {{-- <form action="{{ route('product.update', $edit_data -> id) }}" method="POST" enctype="multipart/form-data"> --}}
+                                            <form action="{{ route('products.update', $product -> id) }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="form-group">
                                                     <label>Tittle</label>
-                                                    <input value="{{$edit_data -> title}}" name="title" type="text" class="form-control">
+                                                    <input value="{{$product -> name}}" name="name" type="text" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Short Desccription</label>
+                                                    <textarea name="short_description" id="text_editor" cols="30" rows="10">{{$product -> short_description}}</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Desccription</label>
-                                                    <input value="{{$edit_data -> description}}" name="desc" type="text" class="form-control">
+                                                    <textarea name="description" id="dersc_editor" cols="10" rows="6">{{$product -> description}}</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Quantity</label>
-                                                    <input value="{{$edit_data -> quantity}}" name="quantity" type="number" min="0" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Price</label>
-                                                    <input value="{{$edit_data -> price}}" name="price" type="number" class="form-control">
+                                                    <input value="{{$product -> quantity}}" name="quantity" type="number" min="0" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Discount Price</label>
-                                                    <input value="{{$edit_data -> dis_price}}" name="dis_price" type="number" min="number" class="form-control">
+                                                    <input value="{{$product -> regular_price}}" name="regular_price" type="number" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Price</label>
+                                                    <input value="{{$product -> sale_price}}" name="sale_price" type="number" min="number" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Catergory</label>
-                                                <select name="cat" id="">
+                                                <select name="category_id" id="">
                                                  
-                                                    <option value="{{$edit_data -> category}}" selected="">{{$edit_data -> category}}</option>
-                                                    @foreach ($category as $cat )
-                                                    <option value="{{$cat-> name}}">{{$cat-> name}}</option> 
+                                                    <option value="{{$product -> category->id}}" selected="">{{$product -> category->name}}</option>
+                                                    @foreach ($cats as $cat )
+                                                    <option value="{{$cat->id}}">{{$cat-> name}}</option> 
+                                                    @endforeach 
+                                                
+                                                </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Brand</label>
+                                                <select name="brand_id" id="">
+                                                 
+                                                    <option value="{{$product -> brand->id}}" selected="">{{$product -> brand->name}}</option>
+                                                    @foreach ($brands as $brand )
+                                                    <option value="{{$brand->id}}">{{$brand-> name}}</option> 
                                                     @endforeach 
                                                 
                                                 </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Old Image</label>
-                                                  <img style="width:220px; height:250px;" src="{{ url('/img/product/'. $edit_data -> image )}}" alt="">
+                                                  <img style="width:220px; height:250px;" src="{{url($product -> img)}}" alt="">
                                                 </div>     
                                                 <div class="form-group">
                                                     <label>Update Image</label>
-                                                    <input name="photo" type="file" class="form-control">
+                                                    <input name="img" type="file" class="form-control">
+                                                </div>     <div class="form-group">
+                                                    <label>Old Gallery</label>
+                                                  <img style="width:220px; height:220px;" src="{{url($product -> gallery)}}" alt="">
+                                                </div>  
+                                                <div class="form-group">
+                                                    <label>Gallery</label>
+                                                    <input name="gallery" type="file" class="form-control">
                                                 </div>
                                             
                                                 <div class="text-right">

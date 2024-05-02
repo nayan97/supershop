@@ -18,7 +18,8 @@
                                                 <tr>
                                                 <td>#</td>
                                                 <td>Title</td>
-                                                <td>Deccription</td>
+                                                <td>Category</td>
+                                                <td>Brand</td>
                                                 <td>Price</td>
                                                 <td>Photo</td>
                                                 <td>Created at</td>
@@ -32,11 +33,13 @@
                                          
                                          <tr>
                                             <td>{{$loop ->index + 1}}</td>
-                                            <td>{{$item -> name}}</td>
-                                            <td>{{$item -> description}}</td>
+                                            <td style="max-width: 60px">{{$item -> name}}</td>
+                                          
                                             <td>{{$item -> sale_price}}</td>
+                                            <td>{{$item -> category->name}}</td>
+                                            <td>{{$item -> brand->name}}</td>
                                             <td>
-                                                <img style="width:45px;height:45px;object-fit:cover;" src="{{ url($item -> img ) }}" alt="">
+                                                <img style="width:115px;height:115px;object-fit:cover;" src="{{ url($item -> img ) }}" alt="">
                                             </td>
                                             <td>{{$item -> created_at -> diffForHumans()}}</td>
                                             <td>

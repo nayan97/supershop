@@ -98,7 +98,19 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        {   $product =product::findOrFail($id);
+            $cats = Category::latest()-> get();
+            $products = product::latest()-> get();
+            $brands = Brand::latest()->get();
+    
+            return view('admin.product.create',[
+                    'form'     => 'edit',
+                    'product'  => $product,
+                    'cats'     => $cats,
+                    'products' => $products,
+                    'brands'   => $brands
+            ]);
+        }
     }
 
     /**
@@ -106,14 +118,63 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product =product::findOrFail($id);
+
+
+
+        if( $request -> hasFile('img','gallery') ){
+
+            $imag_one = $request->file('img');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
+            Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
+            $img_url1 = 'fontend/img/product/upload/'.$name_gen;
+    
+            $imag_two = $request->file('gallery');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_two->getClientOriginalExtension();
+            Image::make($imag_two)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
+            $img_url2 = 'fontend/img/product/upload/'.$name_gen;
+    
+        $product->update([
+            'category_id'    => $request->category_id,
+            'brand_id'       => $request->brand_id,
+            'name'           => $request->name,
+            'slug'           => Str::slug($request -> name),
+            'regular_price'  => $request->regular_price,
+            'sale_price'     => $request->sale_price,
+            'quantity'       => $request->quantity,
+            'short_description' => $request->short_description,
+            'description'    => $request->description,
+            'img'            => $img_url1,
+            'gallery'        => $img_url2,
+        ]);
+        return Redirect()->back()->with('success','Product Added successfully');
+      }else{
+        $product->update([
+            'category_id'    => $request->category_id,
+            'brand_id'       => $request->brand_id,
+            'name'           => $request->name,
+            'slug'           => Str::slug($request -> name),
+            'regular_price'  => $request->regular_price,
+            'sale_price'     => $request->sale_price,
+            'quantity'       => $request->quantity,
+            'short_description' => $request->short_description,
+            'description'    => $request->description,
+     
+        ]);
+        return Redirect()->back()->with('success','Product Added');
+      }
+
+       
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        //
+    {   $product =product::findOrFail($id);
+
+        $product ->delete();
+       
+        return redirect()->back()-> with('success', 'Product deleted successfuly');
     }
 }
