@@ -19,6 +19,7 @@
                                                 <td>#</td>
                                                 <td>Name</td>
                                                 <td>Slug</td>
+                                                <td>Photo</td>
                                                 <td>Created at</td>
                                                 <td>Action</td>
                                             </tr>
@@ -32,12 +33,19 @@
                                             
                                             <td>{{$item -> name}}</td>
                                             <td>{{$item -> slug}}</td>
+                                            <td>
+                                                <img style="width:115px;height:115px;object-fit:cover;" src="{{asset($item->img)}}" alt="">
+                                            </td>
                                             <td>{{$item -> created_at -> diffForHumans()}}</td>
-                                            {{-- <td>
+                                            <td>
                                                 <!----<a class="btn btn-sm btn-info" href="#"><i class="fe fe-eye"></i></a>-->
-                                                <a class="btn btn-sm btn-warning" href="{{ route('admin.role.edit', $item -> id)}}"><i class="fe fe-edit"></i></a>
-                                                <a class="btn btn-sm btn-danger" href="{{ route('admin.role.destroy', $item -> id)}}"><i class="fe fe-trash"></i></a>
-                                            </td> --}}
+                                                <a class="btn btn-sm btn-warning" href="{{ route('category.edit', $item -> id ) }}"><i class="fe fe-edit"></i></a>
+                                                <form onclick="return confirm('Are you sure to delete this')" action="{{ route('category.destroy', $item -> id ) }}" class="d-inline delete-form" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+                                                </form>
+                                            </td>
                                        </tr> 
                                         @empty
                                         <tr>
@@ -67,12 +75,16 @@
 
                                 @include('validate.success')
                                 @include('validate.error')
-									<form action="{{route ('category.store')}}" method="POST">
+									<form action="{{route ('category.store')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
 										<div class="form-group">
 											<label>Category Name</label>
 											<input name="name" type="text" class="form-control">
                                             <hr>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <input name="img" type="file" class="form-control">
                                         </div>
 									
 										<div class="text-right">
@@ -86,38 +98,35 @@
                             @if( $type === 'edit')
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title"> Edit Role</h4>
-                                    <a class="btn btn-primary btn-md" href="{{route('admin.role')}}">Add New Role</a>
+									<h4 class="card-title"> Edit Category</h4>
+                                    <a class="btn btn-primary btn-md" href="{{url('category')}}">Back</a>
 								</div>
 								<div class="card-body">
 
 
                                 @include('validate.success')
                                 @include('validate.error')
-									<form action="{{route ('admin.role.update', $role -> id)}}" method="POST">
-                                        @csrf
-										<div class="form-group">
-											<label>Role Name</label>
-											<input name="name" type="text" value=" {{ $role -> name}}" class="form-control">
-                                            <hr>
-
-                                            @forelse ($permissions as $item)
-
-                                            <label class="d-block">
-                                                <input name="per[]" @if( in_array($item -> name, json_decode($role -> permission )) ) checked @endif  value="{{ $item -> name }}" type="checkbox">
-                                                {{ $item -> name }}
-                                            </label>
-
-                                            @empty
-                                                <p>No Role Data Found</p>
-                                            @endforelse
-                                        
-										</div>
-									
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Update</button>
-										</div>
-									</form>
+								<form action="{{route ('category.update', $categorys -> id)}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <label>Category Name</label>
+                                        <input value="{{$categorys->name}}"name="name" type="text" class="form-control">
+                                        <hr>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Old Image</label>
+                                      <img style="width:220px; height:250px;" src="{{asset($categorys -> img)}}" alt="">
+                                    </div>     
+                                    <div class="form-group">
+                                        <label>Update Image</label>
+                                        <input name="img" type="file" class="form-control">
+                                    </div> 
+                                
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
 								</div>
 							</div>
                             @endif

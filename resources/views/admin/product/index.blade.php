@@ -39,7 +39,7 @@
                                             <td>{{$item -> category->name}}</td>
                                             <td>{{$item -> brand->name}}</td>
                                             <td>
-                                                <img style="width:115px;height:115px;object-fit:cover;" src="{{ url($item -> img ) }}" alt="">
+                                                <img style="width:115px;height:115px;object-fit:cover;" src="{{ asset($item -> img ) }}" alt="">
                                             </td>
                                             <td>{{$item -> created_at -> diffForHumans()}}</td>
                                             <td>

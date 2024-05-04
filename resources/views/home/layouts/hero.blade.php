@@ -4,6 +4,8 @@ $cats =App\Models\category::latest()->get();
 @endphp
   
  <!-- Hero Section Begin -->
+
+
 <section class="hero">
     <div class="container">
         <div class="row">
@@ -15,9 +17,8 @@ $cats =App\Models\category::latest()->get();
                     </div>
                     <ul>
                         @foreach ($cats as $cats )
-                            <li><a href="#">{{$cats->name}}</a></li>
-                        @endforeach
-                   
+                             <li><a href="#">{{$cats->name}}</a></li>
+                         @endforeach
                     </ul>
                 </div>
             </div>
@@ -43,8 +44,18 @@ $cats =App\Models\category::latest()->get();
                         </div>
                     </div>
                 </div>
+                <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg" style="background-image: url(&quot;img/hero/banner.jpg&quot;);">
+                    <div class="hero__text">
+                        <span>FRUIT FRESH</span>
+                        <h2>Vegetable <br>100% Organic</h2>
+                        <p>Free Pickup and Delivery Available</p>
+                        <a href="#" class="primary-btn">SHOP NOW</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+
 <!-- Hero Section End -->

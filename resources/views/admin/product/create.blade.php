@@ -177,7 +177,8 @@
                                                 <div class="form-group">
                                                     <label>Update Image</label>
                                                     <input name="img" type="file" class="form-control">
-                                                </div>     <div class="form-group">
+                                                </div>     
+                                                <div class="form-group">
                                                     <label>Old Gallery</label>
                                                   <img style="width:220px; height:220px;" src="{{url($product -> gallery)}}" alt="">
                                                 </div>  

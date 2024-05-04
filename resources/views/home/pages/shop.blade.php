@@ -405,8 +405,7 @@
                     @endforeach
                    
                 </div>
-         
-                
+         {{$products->links("home.pages.pagination.default")}}
             </div>
         </div>
     </div>

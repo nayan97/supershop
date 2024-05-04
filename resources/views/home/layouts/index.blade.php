@@ -31,7 +31,7 @@
                     @foreach ($cats as $cat )
                         
                         <div class="col-lg-3">
-                            <div class="categories__item set-bg" data-setbg="img/categories/cat-1.jpg">
+                            <div class="categories__item set-bg" data-setbg="{{asset($cat->img)}}">
                                 <h5><a href="#">{{$cat->name}}</a></h5>
                             </div>
                         </div>
