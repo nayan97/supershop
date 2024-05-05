@@ -397,7 +397,7 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="#">{{$product->name}}</a></h6>
+                                    <h6><a href="{{ route('shop.page.details', $product -> slug )}}">{{$product->name}}</a></h6>
                                     <h5>${{$product->sale_price}}</h5>
                                 </div>
                             </div>

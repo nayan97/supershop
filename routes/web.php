@@ -19,6 +19,7 @@ Route::get('/admin',[AdminController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/',[AppController::class,'index'])->name('home.page');
 Route::get('/shop',[ShopController::class,'shop'])->name('shop.page');
+route::get('/product/{slug}',[ShopController::class, 'productDetails'])->name('shop.page.details');
 
 Auth::routes();
 
