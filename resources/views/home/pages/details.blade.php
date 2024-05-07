@@ -51,7 +51,7 @@
                                     <form id="addtocart" method="post" action="{{route('cart.store')}}">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$product->id}}">
-                                        <input type="text" name="quantity" id="qty" value="1">
+                                        <input type="number" name="quantity" id="qty" value="1">
 
                                     </form>
 

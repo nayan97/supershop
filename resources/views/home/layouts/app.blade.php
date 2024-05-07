@@ -54,6 +54,24 @@
     <script src="{{ asset('js/mixitup.min.js')}}"></script>
     <script src="{{ asset('js/owl.carousel.min.js')}}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
+        <script>
+          function updateQuantity(qty)
+          {
+              $('#rowId').val($(qty).data('rowid'));
+              $('#quantity').val($(qty).val());
+              $('#updateCartQty').submit();
+          } 
+
+          function removeItemFromCart(rowId)
+        {
+            $('#rowId_D').val(rowId);
+            $('#deleteFromCart').submit();
+        }  
+        function clearCart()
+        {
+            $('#clearCart').submit();
+        }     
+      </script>
 
 
 

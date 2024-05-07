@@ -55,7 +55,7 @@
                                             <td class="shoping__cart__quantity">
                                                 <div class="quantity">
                                                     <div class="pro-qty">
-                                                        <input type="text" value="{{$item->qty}}">
+                                                        <input type="number" name="quantity" data-rowid="{{$item->rowId}}" onchange="updateQuantity(this)" class="" value="{{$item->qty}}">
                                                     </div>
                                                 </div>
                                             </td>
@@ -63,27 +63,25 @@
                                                 ${{$item->subtotal}}
                                             </td>
                                             <td class="shoping__cart__item__close">
-                                                <span class="icon_close"></span>
+                                                <a href="javascript:void(0)" onclick="removeItemFromCart('{{$item->rowId}}')">
+                                                    <span class="icon_close"></span>
+                                                </a>
                                             </td>
                                         </tr> 
-
-
                                     @endforeach
 
-                              
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                
-                
-                </div>
+                  </div>
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="shoping__cart__btns">
                             <a href="{{route('shop.page')}}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                            <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                                Upadate Cart</a>
+                            <a href="javascript:void(0)" onclick="clearCart()" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                                Clear Cart</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -108,22 +106,41 @@
                         </div>
                     </div>
                 </div>
-            @else
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h1>No Product Found!</h1>
-                    </div>
-                    <div class="col-lg-12 text-center">
-                        <div class="shoping__cart__btns">
-                            <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                    @else
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h1>No Product Found!</h1>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <div class="shoping__cart__btns">
+                                    <a href="{{route('shop.page')}}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                    
-            @endif
+                            
+                    @endif
             
         </div>
     </section>
+
+<form id="updateCartQty" action="{{route('cart.update')}}" method="POST">
+    @csrf
+    @method('put')
+    <input type="hidden" id="rowId" name="rowId" />
+    <input type="hidden" id="quantity" name="quantity" />
+</form>
+
+<form id="deleteFromCart" action="{{route('cart.remove')}}" method="post">
+    @csrf
+    @method('delete')
+    <input type="hidden" id="rowId_D" name="rowId" />
+</form>
+
+<form id="clearCart" action="{{route('cart.clear')}}" method="post">
+    @csrf
+    @method('delete') 
+</form>
+
     <!-- Shoping Cart Section End -->
 
 
