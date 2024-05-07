@@ -4,6 +4,7 @@
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Intervention\Image\ImageServiceProvider;
 
 
@@ -164,6 +165,7 @@ return [
          * Package Service Providers...
          */
         ImageServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -188,6 +190,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Image' => Image::class,
+        'Cart' => Cart::class,
     ])->toArray(),
 
 ];

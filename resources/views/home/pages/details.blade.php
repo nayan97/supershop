@@ -44,12 +44,22 @@
                         <p>{!! (htmlspecialchars_decode($product->short_description))!!}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
+
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    
+
+                                    <form id="addtocart" method="post" action="{{route('cart.store')}}">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$product->id}}">
+                                        <input type="text" name="quantity" id="qty" value="1">
+
+                                    </form>
+
+                                 
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
+                        <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('addtocart').submit()" class="primary-btn">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b>
@@ -61,14 +71,6 @@
                             </li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
                             <li><b>Weight</b> <span>0.5 kg</span></li>
-                            <li><b>Share on</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -150,34 +152,14 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="row"> --}}
-
-                {{-- <div class="col-lg-3 col-md-4 col-sm-6">
-                    
-                    <div class="product__item">
-                            @foreach ($reproducts as $product)
-                            <div class="product__item__pic set-bg" data-setbg="{{ url($product->img)}}">
-                                <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">{{ $product->name }}</a></h6>
-                                <h5>$30.00</h5>
-                            </div>
-                            @endforeach
-                    </div>
-                </div> --}}
-            {{-- </div> --}}
             <div class="row">
             
            
                 @foreach ($reproducts as $product)
                 <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{ url($product->img)}}" style="background-image: url(&quot;img/product/product-7.jpg&quot;);">
+                          
+                            <div class="product__item__pic set-bg" ><span> <a href="{{ route('shop.page.details', $product -> slug )}}"> <img src="{{ url($product->img)}}"></a></span>
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                     <li><a href="#"><i class="fa fa-retweet"></i></a></li>

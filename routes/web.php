@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -17,9 +18,15 @@ use App\Http\Controllers\Admin\CategoryController;
 
 Route::get('/admin',[AdminController::class, 'index'])->name('admin.dashboard');
 
+// -----------------------fontend Routs---------
+
 Route::get('/',[AppController::class,'index'])->name('home.page');
 Route::get('/shop',[ShopController::class,'shop'])->name('shop.page');
-route::get('/product/{slug}',[ShopController::class, 'productDetails'])->name('shop.page.details');
+Route::get('/product/{slug}',[ShopController::class, 'productDetails'])->name('shop.page.details');
+
+Route::get('/cart',[CartController::class, 'index'])->name ('cart.page.index');
+Route::post('/cart/store',[CartController::class, 'addToCart'])->name ('cart.store');
+
 
 Auth::routes();
 
