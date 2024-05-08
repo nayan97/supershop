@@ -63,14 +63,27 @@
           } 
 
           function removeItemFromCart(rowId)
-        {
-            $('#rowId_D').val(rowId);
-            $('#deleteFromCart').submit();
-        }  
-        function clearCart()
-        {
-            $('#clearCart').submit();
-        }     
+          {
+              $('#rowId_D').val(rowId);
+              $('#deleteFromCart').submit();
+          }  
+          function clearCart()
+          {
+              $('#clearCart').submit();
+          } 
+
+          //short per page product
+
+          $("#pagesize").on("change",function(){                    
+                $("#size").val($("#pagesize option:selected").val());
+                $("#frmFilter").submit(); 
+            });
+
+            $("#orderby").on("change",function(){                    
+                $("#order").val($("#orderby option:selected").val());
+                $("#orFilter").submit(); 
+            });
+        
       </script>
 
 

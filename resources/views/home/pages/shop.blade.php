@@ -1,15 +1,13 @@
+
 @php
     // $cats =App\Models\category::where('status',1)->latest()->get();
     $cats =App\Models\category::latest()->get();
 @endphp
-
-
 @extends('home.layouts.app')
 
 @section('home-main')
-
  <!-- Hero Section Begin -->
-<section class="hero hero-normal">
+ <section class="hero hero-normal">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -363,21 +361,36 @@
                 </div>
                 <div class="filter__item">
                     <div class="row">
-                        <div class="col-lg-4 col-md-5">
-                            <div class="filter__sort">
-                                <span>Sort By</span>
-                                <select>
-                                    <option value="0">Default</option>
-                                    <option value="0">Default</option>
+                        <div class="col-lg-10 col-md-5">
+                            <div class="dropdown select-featured">
+                                {{-- <div class="filter__sort">
+                                <span>Sort By</span> --}}
+                                <select class="form-select" name="orderby" id="orderby">
+                                    <option value="-1" {{ $order==-1? 'selected':''}}>Default</option>
+                              
+                              
+                                    <option value="1" {{ $order==1? 'selected':''}}>Date, New To Old</option>
+                              
+                              
+                                    <option value="2" {{ $order==2? 'selected':''}}>Date, Old To New</option>
+                                    <option value="3" {{ $order==3? 'selected':''}}>Price, Low To High</option>
+                                    <option value="4" {{ $order==4? 'selected':''}}>Price, High To Low</option>
+                                </select>
+                                <select class="form-select" name="size" id="pagesize">
+                                    <option value="12" {{ $size == 12 ? 'selected':''}}>Per Page 12 Product</option>
+                                    <option value="24" {{ $size == 24 ? 'selected':''}}>Per Page 24 Product</option>
+                                    <option value="48" {{ $size == 48 ? 'selected':''}}>Per Page 48 Product</option>
+                                    <option value="96" {{ $size == 96 ? 'selected':''}}>Per Page 96 Product</option>
                                 </select>
                             </div>
+                            
                         </div>
-                        <div class="col-lg-4 col-md-4">
+                        {{-- <div class="col-lg-3 col-md-4">
                             <div class="filter__found">
                                 <h6><span>16</span> Products found</h6>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-3">
+                        </div> --}}
+                        <div class="col-lg-2 col-md-3">
                             <div class="filter__option">
                                 <span class="icon_grid-2x2"></span>
                                 <span class="icon_ul"></span>
@@ -405,11 +418,23 @@
                     @endforeach
                    
                 </div>
-         {{$products->links("home.pages.pagination.default")}}
+         {{$products->withQueryString()->links("home.pages.pagination.default")}}
             </div>
         </div>
     </div>
 </section>
+
+<form id="frmFilter" method="GET">
+    <input type="hidden" name="page" id="page" value="{{$page}}"/> 
+    <input type="hidden" name="size" id="size" value="{{$size}}"/> 
+
+</form>
+<form id="orFilter" method="GET">
+
+    <input type="hidden" name="order" id="order" value="{{$order}}"/> 
+
+</form>
 <!-- Product Section End -->
+
     
 @endsection
