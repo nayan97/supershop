@@ -7,6 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_token" content="{{ csrf_token() }}">
     <title>Ogani | Template</title>
 
     <!-- Google Font -->
@@ -46,7 +47,10 @@
 
 
     <!-- Js Plugins -->
-    <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
+    {{-- https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js --}}
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('js/jquery-3.5.1.min.js')}}"></script>
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('js/jquery.nice-select.min.js')}}"></script>
     <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
@@ -83,6 +87,39 @@
                 $("#order").val($("#orderby option:selected").val());
                 $("#orFilter").submit(); 
             });
+
+
+            function addProductToWishlist(id,name,quantity,price){
+        
+
+                $.ajax({
+                    type:'POST',
+                    url:"{{route('wishlist.add')}}",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        id:id,
+                        name:name,
+                        quantity:quantity,
+                        price:price
+                    },
+                    success:function(data){
+
+                        if(data.status == 200)
+                         {
+                               swal({
+                                    title: "Done!",
+                                    text: "This Product Added Your Wishlist!",
+                                    icon: "success",
+                                    button: "ok",
+                                    });
+                      
+                        } 
+                    }
+                          
+                });
+            }
+
+
         
       </script>
 

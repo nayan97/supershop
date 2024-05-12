@@ -404,9 +404,11 @@
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="{{url($product->img)}}">
                                     <ul class="product__item__pic__hover">
-                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="addProductToWishlist({{$product->id}},'{{$product->name}}',1,{{$product->regular_price}})">
+                                                <i class="fa fa-heart"></i></a></li>
+                                        <li><a href="javascript:void(0)"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('addtocart').submit()" ><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">

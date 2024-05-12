@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('addtocart').submit()" class="primary-btn">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <a href="javascript:void(0)" onclick="addProductToWishlist({{$product->id}},'{{$product->name}}',1,{{$product->regular_price}})" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b>
                                 @if ($product->stock_status == 'inStock')

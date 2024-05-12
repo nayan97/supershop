@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\WishListController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -29,6 +30,11 @@ Route::post('/cart/store',[CartController::class, 'addToCart'])->name ('cart.sto
 Route::put('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/cart/remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::delete('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+
+Route::post('/wishlist/add',[WishListController::class, 'addToWishList'])->name ('wishlist.add');
+
+
+
 
 
 Auth::routes();
