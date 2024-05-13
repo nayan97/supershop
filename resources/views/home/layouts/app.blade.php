@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="{{ asset ('css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset ('css/slicknav.min.cs')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset ('css/style.css')}}" type="text/css">
+    <style>
+
+            
+        
+    </style>
 </head>
 
 <body>
@@ -88,6 +93,7 @@
                 $("#orFilter").submit(); 
             });
 
+          // wishlist Functions
 
             function addProductToWishlist(id,name,quantity,price){
         
@@ -118,6 +124,19 @@
                           
                 });
             }
+
+
+            //remove wishlist
+
+        function removeFromWishlist(rowId)
+          {
+              $('#rowId_R').val(rowId);
+              $('#deleteFromWishlist').submit();
+          }  
+        function clearWishlist()
+          {
+              $('#clearWishlist').submit();
+          } 
 
 
         

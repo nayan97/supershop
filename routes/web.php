@@ -25,13 +25,19 @@ Route::get('/',[AppController::class,'index'])->name('home.page');
 Route::get('/shop',[ShopController::class,'shop'])->name('shop.page');
 Route::get('/product/{slug}',[ShopController::class, 'productDetails'])->name('shop.page.details');
 
+//------------------------Cart Routs------------------------
 Route::get('/cart',[CartController::class, 'index'])->name ('cart.page.index');
 Route::post('/cart/store',[CartController::class, 'addToCart'])->name ('cart.store');
 Route::put('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/cart/remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::delete('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 
+//------------------------Wishlist------------------------
+
+Route::get('/wishlist',[WishListController::class, 'showWishList'])->name ('wishlist.show');
 Route::post('/wishlist/add',[WishListController::class, 'addToWishList'])->name ('wishlist.add');
+Route::delete('/wishlist/remove', [WishlistController::class, 'removeFormWishlist'])->name('wishlist.remove');
+Route::delete('/wishlist/clear', [WishlistController::class, 'clearWishlist'])->name('wishlist.clear');
 
 
 

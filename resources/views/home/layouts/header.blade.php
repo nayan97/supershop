@@ -188,7 +188,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>{{Cart::instance('wishlist')->content()->count()}}</span></a></li>
+                            <li><a href="{{route('wishlist.show')}}"><i class="fa fa-heart"></i> <span>{{Cart::instance('wishlist')->content()->count()}}</span></a></li>
                             <li><a href="{{route('cart.page.index')}}"><i class="fa fa-shopping-bag"></i> 
                                 <span>{{Cart::instance('cart')->content()->count()}}</span>
                             </a></li>
