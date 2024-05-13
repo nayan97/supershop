@@ -138,6 +138,11 @@
               $('#clearWishlist').submit();
           } 
 
+        function moveToCart(rowId){
+            $("#rowId_M").val(rowId);
+            $("#moveToCart").submit();
+        }
+
 
         
       </script>

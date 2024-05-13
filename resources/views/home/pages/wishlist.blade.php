@@ -63,13 +63,19 @@
                                             </td>
                                          
                                             <td class="shoping__cart__item__close">
-
-                                                <a href="javascript:void(0)" class="wcarticon">
-                                                    <i class="fa fa-shopping-cart"></i>
-                                                </a>
-                                                <a href="javascript:void(0)" onclick="removeFromWishlist('{{$item->rowId}}')">
-                                                    <span class="icon_close"></span>
-                                                </a>
+                                                @if ($item->model->stock_status == "inStock")
+                                                    <a href="javascript:void(0)"  onclick="moveToCart('{{$item->rowId}}')" class="wcarticon">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </a>
+                                                @else
+                                                    
+                                                    <a href="javascript:void(0)" class="wcarticon disabled">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </a>
+                                                @endif
+                                                    <a href="javascript:void(0)" onclick="removeFromWishlist('{{$item->rowId}}')">
+                                                        <span class="icon_close"></span>
+                                                    </a>
                                             </td>
                                         </tr> 
                                     @endforeach
@@ -138,6 +144,11 @@
 <form id="clearWishlist" action="{{route('wishlist.clear')}}" method="post">
     @csrf
     @method('delete') 
+</form>
+
+<form id="moveToCart" action="{{route('wishlist.movetocart')}}" method="POST">
+    @csrf
+    <input type="hidden" id="rowId_M" name="rowId">
 </form>
 
     <!-- Shoping Cart Section End -->

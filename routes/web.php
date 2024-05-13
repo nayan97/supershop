@@ -38,6 +38,7 @@ Route::get('/wishlist',[WishListController::class, 'showWishList'])->name ('wish
 Route::post('/wishlist/add',[WishListController::class, 'addToWishList'])->name ('wishlist.add');
 Route::delete('/wishlist/remove', [WishlistController::class, 'removeFormWishlist'])->name('wishlist.remove');
 Route::delete('/wishlist/clear', [WishlistController::class, 'clearWishlist'])->name('wishlist.clear');
+Route::post('/wishlist/move',[WishListController::class, 'moveToCart'])->name ('wishlist.movetocart');
 
 
 

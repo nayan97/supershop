@@ -48,7 +48,9 @@ class CartController extends Controller
         Cart::instance('cart')->destroy();
         return redirect()->route('cart.page.index'); 
     }
-    
+
+
+  
 
 
 
