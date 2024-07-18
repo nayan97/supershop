@@ -50,6 +50,7 @@ Auth::routes();
 Route::middleware('auth')->group(function(){
 
     Route::get('/my-acount',[UserController::class, 'index'])->name('user.index');
+    Route::get('/shipping',[UserController::class, 'getShippingAddress'])->name('shippingaddress');
 
 });
 

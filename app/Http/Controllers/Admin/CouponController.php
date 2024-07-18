@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class CouponController extends Controller
 {
+
+
+public $couponCode;
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -80,5 +86,24 @@ class CouponController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+
+    public function applyCouoponCode(){
+
+        $coupon = Coupon::where('code', $this->couponCode)->
+        where('cart_value', '<=', Cart::instance('cart')->subtotal())->first();
+        if ($coupon) {
+            session()->flash('success','coupon has been expired');
+            return;
+        }
+        session()->put('coupon',[
+            'code' => $coupon->code,
+            'type' => $coupon->type,
+            'value' => $coupon->value,
+            'cart_value' => $coupon->cart_value
+        ]);
+
     }
 }

@@ -46,7 +46,7 @@
                                     
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <img style="width:100px" src="{{$item->model->img}}" alt="{{$item->model->name}}">
+                                                <img style="width:60px" src="{{$item->model->img}}" alt="{{$item->model->name}}">
                                                 <h5>{{$item->model->name}}</h5>
                                             </td>
                                             <td class="shoping__cart__price">
@@ -84,10 +84,15 @@
                                 Clear Cart</a>
                         </div>
                     </div>
+
+                    
+                    {{----------------- Coupon Option ----------- --}}
+                    
                     <div class="col-lg-6">
                         <div class="shoping__continue">
                             <div class="shoping__discount">
                                 <h5>Discount Codes</h5>
+                                @include('validate.success-main')
                                 <form action="#">
                                     <input type="text" placeholder="Enter your coupon code">
                                     <button type="submit" class="site-btn">APPLY COUPON</button>
@@ -95,15 +100,28 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="col-lg-6">
                         <div class="shoping__checkout">
                             <h5>Cart Total</h5>
-                            <ul>
-                                <li>Subtotal <span>${{Cart::instance('cart')->subtotal()}}</span></li>
-                                <li>Total <span>${{Cart::instance('cart')->total()}}</span></li>
-                            </ul>
-                            <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
-                        </div>
+                                @if (Session::has('coupon'))
+                            
+                                    <ul>
+                                        <li>Subtotal <span>${{Session::get('coupon')['code']}}</span><b>$</b></li>
+                                        <li>Total <span>${{Cart::instance('cart')->total()}}</span></li>
+                                    </ul>
+                                
+                                @else   
+                                
+                                    <ul>
+                                        <li>Subtotal <span>${{Cart::instance('cart')->subtotal()}}</span></li>
+                                        <li>Total <span>${{Cart::instance('cart')->total()}}</span></li>
+                                    </ul>
+                                
+                                @endif
+                            <a href="{{ route('shippingaddress')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        </div>  
                     </div>
                 </div>
                     @else
