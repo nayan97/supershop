@@ -27,7 +27,9 @@
         <div class="checkout__form">
             <br>
             <h4>Billing Details</h4>
-            <form action="#">
+            <form action="{{ route('addshippingaddress')}}" method="POST">
+                @csrf
+
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="row">
@@ -87,8 +89,8 @@
                                 <li>Fresh Vegetable <span>$151.99</span></li>
                                 <li>Organic Bananas <span>$53.99</span></li>
                             </ul>
-                            <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                            <div class="checkout__order__total">Total <span>$750.99</span></div>
+                            <div class="checkout__order__subtotal">Subtotal <span>${{Cart::instance('cart')->total()}}</span></div>
+                            <div class="checkout__order__total">Total <span><input type="hidden" name="total_amount" value="${{Cart::instance('cart')->total()}}">${{Cart::instance('cart')->total()}}</span></div>
                      
                             <div class="checkout__input__checkbox">
                                 <label for="payment">

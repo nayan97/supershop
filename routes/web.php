@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/my-acount',[UserController::class, 'index'])->name('user.index');
     Route::get('/shipping',[UserController::class, 'getShippingAddress'])->name('shippingaddress');
+    Route::post('/shipping-add',[UserController::class, 'addShippingAddress'])->name('addshippingaddress');
+    
 
 });
 
@@ -58,6 +60,7 @@ Route::middleware('auth','auth.admin')->group(function(){
 
 
     Route::get('/dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
+   
 
 
     Route::resource('products', ProductController::class);
