@@ -106,7 +106,7 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                            <button href="javascript:void(0)" onclick="clearCart()" type="submit" class="site-btn">PLACE ORDER</button>
                         </div>
                     </div>
                 </div>
@@ -114,6 +114,14 @@
         </div>
     </div>
 
+
+
+
+
+    <form id="clearCart" action="{{route('cart.clear')}}" method="post">
+        @csrf
+        @method('delete') 
+    </form>
 
 
 

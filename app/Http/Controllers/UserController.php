@@ -39,8 +39,21 @@ class UserController extends Controller
 
             'total_amount' => $request -> total_amount,
         ]);  
-        return Redirect()->back()->with('success','Product Added successfully');
+        // return Redirect()->back()->with('success','Product Added successfully');
  }
+
+
+
+ /**
+  * remove a product from cart when checkout
+  */
+
+
+  public function clearCart(){
+    Cart::instance('cart')->destroy();
+    return redirect()->route('cart.page.index'); 
+}
+
 
 
 }
