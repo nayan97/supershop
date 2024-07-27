@@ -399,7 +399,15 @@
                     </div>
                 </div>
                 <div class="row">
+                
                     @foreach ($products as $product)
+
+                    <form id="addtocart" method="post" action="{{route('cart.store')}}">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$product->id}}">
+                        <input type="hidden" name="quantity" id="qty" value="1">
+
+                    </form>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="{{url($product->img)}}">
@@ -408,7 +416,10 @@
                                             <a href="javascript:void(0)" onclick="addProductToWishlist({{$product->id}},'{{$product->name}}',1,{{$product->regular_price}})">
                                                 <i class="fa fa-heart"></i></a></li>
                                         <li><a href="javascript:void(0)"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('addtocart').submit()" ><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li>
+                                   
+                                        <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('addtocart').submit()" ><i class="fa fa-shopping-cart"></i></a>
+                                    </li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
