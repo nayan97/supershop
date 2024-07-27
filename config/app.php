@@ -166,6 +166,7 @@ return [
          */
         ImageServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
@@ -190,7 +191,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Image' => Image::class,
-        'Cart' => Cart::class,
+        // 'Cart' => Cart::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
     ])->toArray(),
 
 ];

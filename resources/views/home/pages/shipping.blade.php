@@ -106,7 +106,7 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <button href="javascript:void(0)" onclick="clearCart()" type="submit" class="site-btn">PLACE ORDER</button>
+                            <button type="submit" class="site-btn">PLACE ORDER</button>
                         </div>
                     </div>
                 </div>
