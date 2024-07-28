@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\WishListController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CouponController;
@@ -52,6 +53,14 @@ Route::middleware('auth')->group(function(){
     Route::get('/my-acount',[UserController::class, 'index'])->name('user.index');
     Route::get('/shipping',[UserController::class, 'getShippingAddress'])->name('shippingaddress');
     Route::post('/shipping-add',[UserController::class, 'addShippingAddress'])->name('addshippingaddress');
+    // Route::get('/stripe/{totalprice}',[StripeController::class, 'stripe']);
+
+    Route::controller(StripeController::class)->group(function(){
+        Route::get('stripe', 'stripe');
+        Route::post('stripe', 'stripePost')->name('stripe.post');
+        });
+        
+
     
 
 });
