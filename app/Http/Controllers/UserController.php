@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Cart;
+use App\Models\product;
 use App\Models\Shipping;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,12 +29,15 @@ class UserController extends Controller
 
 
      public function addShippingAddress(Request $request){
-
+        $this -> validate($request, [
+            'fname'      => 'required'
+          ]);
       
 
             $order = new Shipping;
 
             $order -> user_id = Auth::id();
+            $order->status = "Pending";
             $order -> fname = $request -> fname;
             $order -> lname = $request -> lname;
             $order -> email = $request -> email;
@@ -43,11 +48,27 @@ class UserController extends Controller
             $order -> state = $request -> state;
             $order -> zip = $request -> zip;
             $order -> total_amount = $request -> total_amount;
+            $order -> pay_method = $request -> paymethod;
 
             // $order -> save();
 
             if($order -> save()) {
-                $cat = Cart::instance('cart')-> destroy();
+                // $carts = Cart::instance('cart')->content();
+                foreach(Cart::instance('cart')->content() as $item){ 
+                    
+                    // $product = product::find($item -> product -> id);
+
+                    $orderItem = new OrderItem();
+
+                    $orderItem -> product_id = $item ->id;
+                    $orderItem -> quantity = $item ->qty;
+                    $orderItem -> price =  $item -> price;
+                    $orderItem -> order_id =  $order->id;
+                    $orderItem -> save();
+
+
+                }
+                Cart::instance('cart')-> destroy();
                 
             }
 

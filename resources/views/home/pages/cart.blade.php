@@ -32,7 +32,7 @@
                         <div class="shoping__cart__table">
                             <table>
                                 <thead>
-                                    <tr>
+                                    <tr><th>Id</th>
                                         <th class="shoping__product">Products</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
@@ -44,11 +44,16 @@
 
                                     @foreach ($cartItems as $item)
                                     
-                                        <tr>
+                                        <tr>  
+                                            <td class="shoping__cart__item">
+                                           
+                                                <h5>{{$item->model->id}}</h5>
+                                            </td>
                                             <td class="shoping__cart__item">
                                                 <img style="width:60px" src="{{$item->model->img}}" alt="{{$item->model->name}}">
                                                 <h5>{{$item->model->name}}</h5>
                                             </td>
+                                         
                                             <td class="shoping__cart__price">
                                                   ${{$item->model->sale_price}}
                                             </td>

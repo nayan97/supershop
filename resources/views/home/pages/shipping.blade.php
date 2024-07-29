@@ -82,31 +82,31 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
+                            @foreach (Cart::instance('cart') as $item)
                             <h4>Your Order</h4>
                             <div class="checkout__order__products">Products <span>Total</span></div>
                             <ul>
-                                <li>Vegetable’s Package <span>$75.99</span></li>
-                                <li>Fresh Vegetable <span>$151.99</span></li>
-                                <li>Organic Bananas <span>$53.99</span></li>
+                                <li>{{$item-> name}}<span>${{$item->sale_price}}</span></li>
                             </ul>
-                            <div class="checkout__order__subtotal">Subtotal <span>${{Cart::instance('cart')->total()}}</span></div>
-                            <div class="checkout__order__total">Total <span><input type="hidden" name="total_amount" value="${{Cart::instance('cart')->total()}}">${{Cart::instance('cart')->total()}}</span></div>
+                            @endforeach
+                            <div class="checkout__order__subtotal">Subtotal <span>${{Cart::instance('cart')->subtotal()}}</span></div>
+                            <div class="checkout__order__total">Total <span><input type="hidden" name="total_amount" value="{{Cart::instance('cart')->total()}}">${{Cart::instance('cart')->total()}}</span></div>
                      
                             <div class="checkout__input__checkbox">
-                                <label for="payment">
-                                    Check Payment
-                                    <input type="checkbox" id="payment">
-                                    <span class="checkmark"></span>
-                                </label>
+                                <div class="form-check custome-radio-box">
+                                    <input name="paymethod" class="form-check-input" type="radio" value="stripe" id="stripe">
+                                    <label class="form-check-label" for="debit">Debit card</label>
+                                </div>
+                                
                             </div>
                             <div class="checkout__input__checkbox">
-                                <label for="paypal">
-                                    Paypal
-                                    <input type="checkbox" id="paypal">
-                                    <span class="checkmark"></span>
-                                </label>
+                                <div class="form-check custome-radio-box">
+                                    <input name="paymethod" class="form-check-input" type="radio" value="cash" id="cashOn">
+                                    <label class="form-check-label" for="cashOn">Cash On</label>
+                                </div>
                             </div>
-                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                         
+                            <button type="submit" class="site-btn btn-block">PLACE ORDER</button>
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,9 @@ return new class extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('zip');
-            $table->string('total_amount');
+            $table->string('status');
+            $table->float('total_amount');
+            $table->string('pay_method');
             $table->timestamps();
         });
     }
