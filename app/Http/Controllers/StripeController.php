@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Stripe\Stripe;
 use Illuminate\Http\Request;
 
 class StripeController extends Controller
@@ -18,7 +19,7 @@ class StripeController extends Controller
 */
 public function stripe()
 {
-return view('home.pages.stripepay');
+      return view('home.pages.stripepay');
 }
 /**
 * success response method.
@@ -27,15 +28,15 @@ return view('home.pages.stripepay');
 */
 public function stripePost(Request $request)
 {
-Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-Stripe\Charge::create ([
-"amount" => 100 * 100,
-"currency" => "usd",
-"source" => $request->stripeToken,
-"description" => "Test payment from itsolutionstuff.com."
-]);
-Session::flash('success', 'Payment successful!');
-return back();
+Stripe::setApiKey(env('STRIPE_SECRET'));
+    Stripe\Charge::create ([
+    "amount" => 100 * 100,
+    "currency" => "usd",
+    "source" => $request->stripeToken,
+    "description" => "Test payment from itsolutionstuff.com."
+    ]);
+    Session::flash('success', 'Payment successful!');
+    return back();
 }
 
 

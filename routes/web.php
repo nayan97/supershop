@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function(){
     // Route::get('/stripe/{totalprice}',[StripeController::class, 'stripe']);
 
     Route::controller(StripeController::class)->group(function(){
-        Route::get('stripe', 'stripe');
+        Route::get('stripe', 'stripe')->name('stripe');
         Route::post('stripe', 'stripePost')->name('stripe.post');
         });
         

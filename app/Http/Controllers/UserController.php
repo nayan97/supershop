@@ -50,14 +50,12 @@ class UserController extends Controller
             $order -> total_amount = $request -> total_amount;
             $order -> pay_method = $request -> paymethod;
 
-            // $order -> save();
-
             if($order -> save()) {
                 // $carts = Cart::instance('cart')->content();
-                foreach(Cart::instance('cart')->content() as $item){ 
-                    
-                    // $product = product::find($item -> product -> id);
+                // foreach($carts as $item){ 
 
+             foreach(Cart::instance('cart')->content() as $item){ 
+                    
                     $orderItem = new OrderItem();
 
                     $orderItem -> product_id = $item ->id;
@@ -71,9 +69,13 @@ class UserController extends Controller
                 Cart::instance('cart')-> destroy();
                 
             }
+            if($order->pay_method == 'stripe'){
+                return view('home.pages.stripepay');
+                
+            }else{
+             return Redirect()->back()->with('success','Product Added successfully');
 
-        
-        return Redirect()->back()->with('success','Product Added successfully');
+            }
 
      }
 
