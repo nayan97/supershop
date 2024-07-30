@@ -8,6 +8,7 @@ use App\Models\Shipping;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -70,7 +71,10 @@ class UserController extends Controller
                 
             }
             if($order->pay_method == 'stripe'){
-                return view('home.pages.stripepay');
+
+               Session::put('order_id', $order->id);
+               return Redirect()-> route('stripe');
+
                 
             }else{
              return Redirect()->back()->with('success','Product Added successfully');
