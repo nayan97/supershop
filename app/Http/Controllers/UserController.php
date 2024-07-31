@@ -3,17 +3,43 @@
 namespace App\Http\Controllers;
 
 use Cart;
+use App\Models\User;
 use App\Models\product;
 use App\Models\Shipping;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     public function index(){
-        return view('users.index');
+          
+            $user_id = Auth::id();
+            // $users = User::find($user_id);
+
+            $users = User::findOrFail($user_id);
+           
+            return view('users.index', compact('users'));
+
+    }
+
+    public function userUpdate(Request $request, string $id){
+     
+
+      $newUsers = User::findOrFail($id);
+     
+        // // $newUsers -> password = Hash::make($request->password);
+
+        $newUsers -> update([ 
+          'name'    => $request -> name,
+          'cell'    => $request -> cell
+      ]);
+     
+   
+      
+      return Redirect()->back()->with('success','Product Added successfully');
 
     }
 

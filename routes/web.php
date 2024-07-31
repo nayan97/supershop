@@ -50,7 +50,9 @@ Auth::routes();
 
 Route::middleware('auth')->group(function(){
 
-    Route::get('/my-acount',[UserController::class, 'index'])->name('user.index');
+    Route::get('/my-account',[UserController::class, 'index'])->name('user.index');
+    Route::post('/user-update/{id}',[UserController::class, 'userUpdate'])->name('user.update');
+
     Route::get('/shipping',[UserController::class, 'getShippingAddress'])->name('shippingaddress');
     Route::post('/shipping-add',[UserController::class, 'addShippingAddress'])->name('addshippingaddress');
     // Route::get('/stripe/{totalprice}',[StripeController::class, 'stripe']);
