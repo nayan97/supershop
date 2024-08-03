@@ -25,24 +25,62 @@ class UserController extends Controller
 
     }
 
+
     public function userUpdate(Request $request, string $id){
-     
-
+    
       $newUsers = User::findOrFail($id);
-     
-        // // $newUsers -> password = Hash::make($request->password);
 
+      $this -> validate($request,[
+        'name'                 => 'required',
+        'cell'                 => 'required',
+    ]); 
+     
         $newUsers -> update([ 
           'name'    => $request -> name,
-          'cell'    => $request -> cell
+          'cell'    => $request -> cell,
       ]);
      
-   
-      
       return Redirect()->back()->with('success','Product Added successfully');
 
     }
 
+
+    public function password(){
+      $user_id = Auth::id();
+      $users = User::findOrFail($user_id);
+     
+      return view('users.password', compact('users'));
+    }
+
+    /**
+     * password update
+     */
+    public function passwordUpdate(Request $request, string $id){
+    
+      $newUsers = User::findOrFail($id);
+
+      $this -> validate($request,[
+        'old_password'             => 'required',
+        'password'                 => 'required|confirmed',
+        'password_confirmation'    => 'required'
+    ]); 
+
+      if(password_verify($request -> old_password, $newUsers-> password) ==false){
+           return back()->with('success','password is incorrect');
+
+      }else{
+          $newUsers -> update([ 
+              'password'    =>Hash::make($request -> password)
+            
+          ]);
+        
+          return back()->with('success','password updated successfully');
+
+      }
+      
+
+
+    }
 
 
     public function getShippingAddress(){

@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/my-account',[UserController::class, 'index'])->name('user.index');
     Route::post('/user-update/{id}',[UserController::class, 'userUpdate'])->name('user.update');
+    Route::get('/user-password',[UserController::class, 'password'])->name('user.password');
+    Route::post('/user-password/{id}',[UserController::class, 'passwordUpdate'])->name('password.update');
 
     Route::get('/shipping',[UserController::class, 'getShippingAddress'])->name('shippingaddress');
     Route::post('/shipping-add',[UserController::class, 'addShippingAddress'])->name('addshippingaddress');

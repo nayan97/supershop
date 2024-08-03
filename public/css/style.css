@@ -3487,9 +3487,7 @@ ol {
 	text-transform: uppercase;
 	font-size: 0.875rem;
 	font-weight: 500; }
-	.my-account .account-nav .menu-link.menu-link_active {
-	  pointer-events: none;
-	  color: #c32929; }
+
   .my-account .page-content {
 	padding-top: 2.5rem; }
   .my-account__dashboard p {
