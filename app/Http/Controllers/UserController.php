@@ -45,6 +45,12 @@ class UserController extends Controller
     }
 
 
+
+    /**
+     * password update
+     */
+
+
     public function password(){
       $user_id = Auth::id();
       $users = User::findOrFail($user_id);
@@ -52,9 +58,8 @@ class UserController extends Controller
       return view('users.password', compact('users'));
     }
 
-    /**
-     * password update
-     */
+
+
     public function passwordUpdate(Request $request, string $id){
     
       $newUsers = User::findOrFail($id);

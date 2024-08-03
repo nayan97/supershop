@@ -10,9 +10,15 @@
         <li><a href="{{route ('user.index')}}" class="btn btn-sm">Profile</a></li>
         <li><a href="{{route ('user.password')}}" class="btn btn-sm">Password</a></li>
         {{-- <li><a href="account-address.html" class="menu-link menu-link_us-s">Addresses</a></li>
-        <li><a href="account-details.html" class="menu-link menu-link_us-s">Account Details</a></li>
-        <li><a href="account-wishlist.html" class="menu-link menu-link_us-s">Wishlist</a></li>
-        <li><a href="login.html" class="menu-link menu-link_us-s">Logout</a></li> --}}
+        <li><a href="account-details.html" class="menu-link menu-link_us-s">Account Details</a></li> --}}
+        <li><a href="{{route('wishlist.show')}}" class="btn btn-sm">Wishlist</a></li>
+        <li>    
+          <a class="btn btn-sm" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+          </a>
+        </li>
       </ul>
     </div>
     <div class="col-lg-9">
