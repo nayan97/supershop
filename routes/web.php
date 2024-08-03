@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\WishListController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ThemeController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -81,5 +82,6 @@ Route::middleware('auth','auth.admin')->group(function(){
     Route::resource('category', CategoryController::class);
     Route::resource('brand', BrandController::class);
     Route::resource('coupon', CouponController::class);
+    Route::resource('theme', ThemeController::class);
 
 });

@@ -30,36 +30,61 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-form-label col-md-2">email</label>
+                        <div class="col-md-10">
+                            <input name="email" type="text" value="{{ $theme -> email}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-2">Cell</label>
+                        <div class="col-md-10">
+                            <input name="cell" type="text" value="{{ $theme -> cell}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-2">Address</label>
+                        <div class="col-md-10">
+                            <input name="address" type="text" value="{{ $theme -> address}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-2">Hot Deal</label>
+                        <div class="col-md-10">
+                            <input name="running_tag" type="text" value="{{ $theme -> running_tag}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-form-label col-md-2">Logo</label>
                         <div class="col-md-10">
                             @if ($theme-> logo === 'logo.png')
                 
-                                <img style="background-color:#ddd;" src="{{ url ('frontend/images/logo_light.png')}}" alt="" class="logo-light">
-                                <br>
+                                <img style="background-color:#ddd;" src="{{ url ('img/logo.png')}}" alt="">
+                                <br><br>
+                              
+                            
                             @else
                                 <img style="width:100px; height:100px;background-color:#ddd;"src="{{ url ('storage/logo/' . $theme -> logo ) }}" alt="" class="logo-light">
                             @endif
                         
                             <input name="old-logo" type="hidden" value="{{ $theme -> logo }}">
-                            <br>
-                            <br>
+                        
                             <input name="logo" type="file" class="form-control">
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label class="col-form-label col-md-2">Favicon</label>
                         <div class="col-md-10">
                             <input name="favicon" type="file" class="form-control">
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group row">
                         <label class="col-form-label col-md-2">Copy Right</label>
                         <div class="col-md-10">
-                            <textarea name="copy" rows="2" cols="5" class="form-control" value="">{{ $theme -> copy}}</textarea>
+                            <textarea name="copy" rows="2" cols="5" class="form-control" value="">{{ $theme -> copyright}}</textarea>
                         </div>
                     </div>
-                    @php
+                    {{-- @php
                         $social = json_decode($theme -> social, false);
                     
                     @endphp
@@ -84,7 +109,7 @@
                             <label for="">Instagram</label>
                             <input value="{{$social -> ins}}"  name="ins" class="form-control" type="text">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                         <label class="col-form-label col-md-2"></label>
                         <div class="col-md-10">

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Theme;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ThemeController extends Controller
 {
@@ -12,7 +13,12 @@ class ThemeController extends Controller
      */
     public function index()
     {
-        //
+        $theme = Theme::findOrFail(1);
+        return view('admin.theme.index', [
+            'theme' => $theme,
+         
+        ]);
+       
     }
 
     /**
@@ -52,7 +58,40 @@ class ThemeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $theme = Theme::findOrFail(1);
+
+        // Logo manegement
+        if($request -> hasFile('logo')){
+
+            $img =$request -> file('logo');
+            $file_name = md5(time().rand()).'.'. $img -> clientExtension();
+
+            $image = Image::make($img -> getRealPath());
+            $image -> save (storage_path('app/public/logo/'. $file_name));
+
+        }
+
+        // $social = [
+        //     'fb'    => $request -> fb ?? '',
+        //     'din'   => $request -> din ?? '',
+        //     'tw'    => $request -> tw ?? '',
+        //     'wapp'  => $request -> wapp ?? '',
+        //     'ins'   => $request -> ins ?? '',
+        // ];
+
+        $theme -> update([ 
+            'title'     => $request -> title,
+            'tagline'   => $request -> tagline,
+            'cell'      => $request -> cell,
+            'email'     => $request -> email,
+            'address'   => $request -> address,
+            'running_tag'   => $request -> running_tag,
+            'copyright' => $request -> copy,
+            'logo'      => $file_name ?? 'logo.png',
+            // 'social'   => json_encode($social)
+
+        ]);
+        return back() -> with('success', 'Theme data updated Successfully');
     }
 
     /**

@@ -27,7 +27,8 @@
           <form name="account_edit_form" action="{{ route('password.update', $users->id)}}" method="POST" class="needs-validation" novalidate="">
             @csrf
 
-            @include('validate.success-main')
+            @include('validate.error')
+            @include('validate.success')
             
             <div class="row">
               <div class="col-md-12">
