@@ -84,7 +84,7 @@
                             <textarea name="copy" rows="2" cols="5" class="form-control" value="">{{ $theme -> copyright}}</textarea>
                         </div>
                     </div>
-                    {{-- @php
+                    @php
                         $social = json_decode($theme -> social, false);
                     
                     @endphp
@@ -109,7 +109,7 @@
                             <label for="">Instagram</label>
                             <input value="{{$social -> ins}}"  name="ins" class="form-control" type="text">
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="form-group row">
                         <label class="col-form-label col-md-2"></label>
                         <div class="col-md-10">

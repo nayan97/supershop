@@ -1,6 +1,8 @@
     
     @php
-        $theme_data = App\Models\Theme::find(1)
+        $theme_data = App\Models\Theme::find(1);
+       $social = json_decode($theme_data  -> social, false);
+
     @endphp
        <!-- Page Preloder -->
         {{-- <div id="preloder">
@@ -91,10 +93,21 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
                             <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                @if (!empty($social->fb))
+                                <a href="{{ $social -> fb}}"><i class="fa fa-facebook"></i></a>
+                                @endif
+                                @if (!empty($social->din))
+                                <a href="{{ $social -> din}}"><i class="fa fa-linkedin"></i></a>
+                                @endif
+                                @if (!empty($social->ins))
+                                <a href="{{ $social -> ins}}"><i class="fa fa-instagram"></i></a>   
+                                @endif
+                                @if (!empty($social->tw))
+                                <a href="{{ $social -> tw}}"><i class="fa fa-twitter"></i></a> 
+                                @endif
+                                @if (!empty($social->wapp))
+                                <a href="{{ $social -> wapp}}"><i class="fa fa-whatsapp"></i></a>
+                                @endif
                             </div>
                             <div class="header__top__right__language">
                                 <img src="img/language.png" alt="">

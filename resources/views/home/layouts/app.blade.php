@@ -1,3 +1,7 @@
+@php
+$theme_data = App\Models\Theme::find(1);
+@endphp
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -8,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="_token" content="{{ csrf_token() }}">
-    <title>Ogani | Template</title>
+    <title>{{$theme_data->title}} | {{$theme_data->tagline}}</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Theme;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class ThemeController extends Controller
 {
@@ -71,13 +72,13 @@ class ThemeController extends Controller
 
         }
 
-        // $social = [
-        //     'fb'    => $request -> fb ?? '',
-        //     'din'   => $request -> din ?? '',
-        //     'tw'    => $request -> tw ?? '',
-        //     'wapp'  => $request -> wapp ?? '',
-        //     'ins'   => $request -> ins ?? '',
-        // ];
+        $social = [
+            'fb'    => $request -> fb ?? '',
+            'din'   => $request -> din ?? '',
+            'tw'    => $request -> tw ?? '',
+            'wapp'  => $request -> wapp ?? '',
+            'ins'   => $request -> ins ?? '',
+        ];
 
         $theme -> update([ 
             'title'     => $request -> title,
@@ -88,7 +89,7 @@ class ThemeController extends Controller
             'running_tag'   => $request -> running_tag,
             'copyright' => $request -> copy,
             'logo'      => $file_name ?? 'logo.png',
-            // 'social'   => json_encode($social)
+            'social'   => json_encode($social)
 
         ]);
         return back() -> with('success', 'Theme data updated Successfully');

@@ -1,6 +1,7 @@
 @php
 // $cats =App\Models\category::where('status',1)->latest()->get();
 $cats =App\Models\category::latest()->get();
+$theme_data = App\Models\Theme::find(1);
 @endphp
   
  <!-- Hero Section Begin -->
@@ -39,7 +40,7 @@ $cats =App\Models\category::latest()->get();
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
+                            <h5>{{$theme_data -> cell}}</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>
