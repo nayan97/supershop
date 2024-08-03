@@ -1,5 +1,7 @@
     
-    
+    @php
+        $theme_data = App\Models\Theme::find(1)
+    @endphp
        <!-- Page Preloder -->
         {{-- <div id="preloder">
             <div class="loader">
@@ -11,7 +13,13 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
+            <a href="{{ route('home.page')}}">
+            @if ($theme_data -> logo === 'logo.png')
+                <img src="img/logo.png" alt="">
+            @else
+                <img src="{{ url('storage/logo/' . $theme_data -> logo)}}" alt="">
+            @endif
+            </a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -38,7 +46,7 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="{{ route('home.page')}}">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
+                <li><a href="{{ route('shop.page')}}">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
@@ -60,8 +68,8 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
+                <li><i class="fa fa-envelope"></i>{{ $theme_data -> email}}</li>
+                <li>{{ $theme_data -> runnig_tag}}</li>
             </ul>
         </div>
     </div>
@@ -75,8 +83,8 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i class="fa fa-envelope"></i>{{ $theme_data -> email}}</li>
+                                <li>{{ $theme_data -> running_tag}}</li>
                             </ul>
                         </div>
                     </div>
@@ -164,7 +172,13 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="{{ route('home.page')}}">
+                            @if ($theme_data -> logo === 'logo.png')
+                                <img src="img/logo.png" alt="">
+                            @else
+                                <img src="{{ url('storage/logo/' . $theme_data -> logo)}}" alt="">
+                            @endif
+                            </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
